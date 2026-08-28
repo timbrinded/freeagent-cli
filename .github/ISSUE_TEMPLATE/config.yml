@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security report
+    url: https://github.com/timbrinded/freeagent-cli/security/advisories/new
+    about: Report a vulnerability privately. Do not publish credentials or private financial data.
+  - name: FreeAgent support
+    url: https://support.freeagent.com/
+    about: Ask FreeAgent about the hosted service, account, or accounting product behaviour.

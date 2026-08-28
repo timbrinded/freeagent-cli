@@ -1,0 +1,26 @@
+# Build output
+/bin/
+/dist/
+/coverage.out
+/coverage.html
+/.cache/
+
+# Local configuration and credentials
+/.env
+/.env.*
+!.env.example
+
+# Editor and operating-system files
+.DS_Store
+.idea/
+.vscode/
+
+# Local research evidence. The maintained conclusions live in docs/.
+/cli-opposition-research.json
+/freeagent-api-official-docs.json
+/freeagent-cli-research.json
+/freeagent-existing-tools.json
+/freeagent-oauth-capabilities.json
+/go-cli-best-practices.json
+/go-freeagent-tools-audit.json
+/skill-best-practices.json

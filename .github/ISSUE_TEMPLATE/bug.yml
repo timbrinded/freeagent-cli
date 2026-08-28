@@ -1,0 +1,56 @@
+name: Bug report
+description: Report a reproducible CLI defect with redacted evidence.
+title: 'bug: '
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This project is unofficial. Remove credentials and private accounting data from all fields.
+  - type: checkboxes
+    attributes:
+      label: Sensitive data check
+      options:
+        - label: I removed client secrets, tokens, OAuth redirect URLs, and private financial records.
+          required: true
+        - label: This is not a security vulnerability. I will use private vulnerability reporting for security defects.
+          required: true
+  - type: input
+    attributes:
+      label: Version
+      description: Paste redacted output from `freeagent version --output json`.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Operating system
+      placeholder: Linux amd64, macOS arm64, or Windows amd64
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: Environment
+      options:
+        - Sandbox
+        - Production
+        - No API request
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Reproduction
+      description: Give the smallest command sequence with placeholders for IDs and all sensitive values.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Actual behaviour
+      description: Include the exit code and redacted structured error.
+    validations:
+      required: true

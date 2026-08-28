@@ -1,0 +1,92 @@
+version: 2
+
+project_name: freeagent
+
+builds:
+  - id: freeagent
+    main: ./cmd/freeagent
+    binary: freeagent
+    env:
+      - CGO_ENABLED=0
+    flags:
+      - -trimpath
+    ldflags:
+      - >-
+        -s -w
+        -X main.version={{ .Version }}
+        -X main.commit={{ .Commit }}
+        -X main.date={{ .Date }}
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    goamd64:
+      - v1
+
+archives:
+  - id: freeagent
+    ids:
+      - freeagent
+    formats:
+      - tar.gz
+    format_overrides:
+      - goos: windows
+        formats:
+          - zip
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- .Version }}_
+      {{- .Os }}_
+      {{- .Arch }}
+    files:
+      - LICENSE
+      - README.md
+      - CHANGELOG.md
+      - CONTRIBUTING.md
+      - CODE_OF_CONDUCT.md
+      - SECURITY.md
+      - src: docs/*.md
+        dst: docs
+      - src: examples/*.md
+        dst: examples
+      - src: .agents/skills/freeagent-cli/**
+        dst: .agents/skills/freeagent-cli
+
+checksum:
+  name_template: checksums.txt
+  algorithm: sha256
+
+sboms:
+  - id: archives
+    artifacts: archive
+
+snapshot:
+  version_template: "{{ incpatch .Version }}-next"
+
+changelog:
+  use: git
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+      - '^chore:'
+      - '^ci:'
+      - '^style:'
+      - '^Merge pull request'
+
+release:
+  github:
+    owner: timbrinded
+    name: freeagent-cli
+  # Keep artifacts private until the workflow has created provenance for every
+  # release asset. The final workflow step publishes the attested draft.
+  draft: true
+  prerelease: auto
+  mode: replace
+
+metadata:
+  mod_timestamp: "{{ .CommitTimestamp }}"
