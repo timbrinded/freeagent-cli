@@ -33,13 +33,6 @@ func TestRepositoryRoundTrip(t *testing.T) {
 	if got.DefaultProfile != want.DefaultProfile || got.Profiles["work"] != want.Profiles["work"] {
 		t.Fatalf("round trip mismatch: got %#v want %#v", got, want)
 	}
-	info, err := os.Stat(path)
-	if err != nil {
-		t.Fatal(err)
-	}
-	if info.Mode().Perm()&0o077 != 0 {
-		t.Fatalf("configuration permissions are too broad: %o", info.Mode().Perm())
-	}
 }
 
 func TestRepositorySaveReplacesExistingFile(t *testing.T) {

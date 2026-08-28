@@ -21,10 +21,11 @@ user and keyring remain the local trust boundary.
 ## Credential storage
 
 Profiles use schema v1 at `os.UserConfigDir()/freeagent/config.json`. The CLI
-replaces the file atomically with owner-only permissions. A profile contains
-only its environment, client ID, exact redirect URI, pinned API version, and
-read-only policy. Sandbox and production select fixed API origins. Profiles
-contain no secret.
+replaces the file atomically. POSIX systems use owner-only file permissions.
+Windows uses the access-control list inherited from the current user's
+`%AppData%` directory. A profile contains only its environment, client ID,
+exact redirect URI, pinned API version, and read-only policy. Sandbox and
+production select fixed API origins. Profiles contain no secret.
 
 Client secrets and the complete access/refresh token record are stored under
 the OS keyring service `freeagent-cli`. Keyring failure is fatal by default.

@@ -52,10 +52,12 @@ become part of the public contract.
 
 ### `internal/auth` and `internal/config`
 
-Keep schema-v1 non-secret profiles in the atomically replaced owner-only config
-file. Keep client secrets and the whole token record under the OS keyring
-service `freeagent-cli`. Serialize token refresh across processes. Keep browser
-launching optional; make initial human approval mandatory.
+Keep schema-v1 non-secret profiles in the atomically replaced per-user config
+file. POSIX systems use owner-only modes; Windows inherits the current user's
+`%AppData%` access-control list. Keep client secrets and the whole token record
+under the OS keyring service `freeagent-cli`. Serialize token refresh across
+processes. Keep browser launching optional; make initial human approval
+mandatory.
 
 ### `internal/output` and `internal/protocol`
 

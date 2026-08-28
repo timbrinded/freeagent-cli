@@ -39,8 +39,9 @@ can retain it.
 ## Credential placement
 
 The versioned schema-v1 profile configuration is stored at
-`os.UserConfigDir()/freeagent/config.json`. It is replaced atomically with
-owner-only file permissions. It contains:
+`os.UserConfigDir()/freeagent/config.json`. It is replaced atomically. POSIX
+systems use owner-only file permissions. Windows uses the access-control list
+inherited from the current user's `%AppData%` directory. It contains:
 
 - Profile name.
 - `sandbox` or `production` environment.
